@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Data from "../data/select.json";
 
 const MultiSelect = ({ handleChange, selected, setSelected }) => {
@@ -12,6 +12,14 @@ const MultiSelect = ({ handleChange, selected, setSelected }) => {
   };
 
   const ref = useRef();
+
+  useEffect(() => {
+    const options = ref.current.options;
+    selected.forEach((item) => {
+      options[item.index].style.backgroundColor = "#D0C1FC";
+      options[item.index].selected = true;
+    });
+  }, []);
   return (
     <div className="mt-2">
       <select

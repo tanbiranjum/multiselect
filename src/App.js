@@ -2,9 +2,11 @@ import MultiSelect from "./components/MultiSelect";
 import React, { useState } from "react";
 
 function App() {
-  const [name, setName] = useState("");
-  const [selected, setSelected] = useState([]);
-  const [terms, setTerms] = useState(false);
+  const data = JSON.parse(localStorage.getItem("savedata")) || {};
+
+  const [name, setName] = useState(data.name || "");
+  const [selected, setSelected] = useState(data.selected || []);
+  const [terms, setTerms] = useState(data.terms || false);
 
   const handleChange = (e) => {
     const options = e.target.options;
@@ -26,7 +28,12 @@ function App() {
   };
 
   const onSubmit = () => {
-    console.log(name, selected, terms);
+    const data = {
+      name,
+      selected,
+      terms,
+    };
+    localStorage.setItem("savedata", JSON.stringify(data));
   };
 
   return (
@@ -38,7 +45,7 @@ function App() {
       <hr className="w-3/4" />
       <div className="mt-4">
         <div className="space-y-1 text-sm">
-          <label for="name" className="block dark:text-gray-50 text-lg">
+          <label htmlFor="name" className="block dark:text-gray-50 text-lg">
             Name
           </label>
           <input
@@ -46,6 +53,7 @@ function App() {
             name="name"
             id="name"
             placeholder="name"
+            value={name}
             onChange={(e) => {
               setName(e.target.value);
             }}
@@ -53,7 +61,7 @@ function App() {
           />
         </div>
         <div className="space-y-1 text-sm mt-4">
-          <label for="select" className="block dark:text-gray-50 text-lg">
+          <label htmlFor="select" className="block dark:text-gray-50 text-lg">
             Sectors
           </label>
           <MultiSelect
@@ -73,7 +81,11 @@ function App() {
             }}
             className="mr-1 rounded-sm focus:ring-violet-400 focus:dark:border-violet-400 focus:ring-2 accent-violet-400"
           />
-          <label for="remember" className="text-md dark:text-gray-50">
+          <label
+            htmlFor="remember"
+            className="text-md dark:text-gray-50"
+            defaultValue={terms}
+          >
             Agree to terms
           </label>
         </div>
