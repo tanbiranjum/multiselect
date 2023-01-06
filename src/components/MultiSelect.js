@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import Data from "../data/select.json";
 
-const MultiSelect = ({ handleChange, selected, setSelected }) => {
+const MultiSelect = ({ handleChange, selected, setSelected, error }) => {
+  // delete the selected item from the selected state
   const deleteItem = (index) => {
     const options = ref.current.options;
     options[index].style.backgroundColor = "transparent";
@@ -13,6 +14,7 @@ const MultiSelect = ({ handleChange, selected, setSelected }) => {
 
   const ref = useRef();
 
+  // set the selected options to the selected state
   useEffect(() => {
     const options = ref.current.options;
     selected.forEach((item) => {
@@ -55,6 +57,11 @@ const MultiSelect = ({ handleChange, selected, setSelected }) => {
           </>
         ))}
       </select>
+      {error?.selected && (
+        <span className="text-red-700 text-lg font-semibold">
+          {error.selected}
+        </span>
+      )}
       <div className="flex mt-3 gap-x-2">
         {selected?.map((item, index) => (
           <div

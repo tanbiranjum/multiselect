@@ -7,12 +7,14 @@ function App() {
   const [name, setName] = useState(data.name || "");
   const [selected, setSelected] = useState(data.selected || []);
   const [terms, setTerms] = useState(data.terms || false);
+  const [error, setError] = useState({});
 
   const handleChange = (e) => {
     const options = e.target.options;
 
     for (let i = 0, l = options.length; i < l; i++) {
       if (options[i].selected) {
+        // check if the option is already selected
         if (selected.some((item) => item.index === options[i].index)) {
           return;
         }
@@ -23,6 +25,7 @@ function App() {
             { value: options[i].value, index: i, name: options[i].label },
           ]);
         } else {
+          // if there is no selected item
           setSelected([
             { value: options[i].value, index: i, name: options[i].label },
           ]);
@@ -31,7 +34,22 @@ function App() {
     }
   };
 
+  // save data to local storage
   const onSubmit = () => {
+    console.log(terms);
+    if (name === "") {
+      setError({ name: "Please fill the name*" });
+      return;
+    }
+    if (selected.length === 0) {
+      setError({ selected: "Please select at least one sector*" });
+      return;
+    }
+    if (!terms) {
+      setError({ terms: "Please accept the terms*" });
+      return;
+    }
+    setError({});
     const data = {
       name,
       selected,
@@ -63,6 +81,12 @@ function App() {
             }}
             className="w-1/5 px-4 py-3 rounded-md border-gray-700 bg-gray-900 text-gray-100 focus:dark:border-violet-400"
           />
+          <br />
+          {error?.name && (
+            <span className="text-red-700 text-lg font-semibold">
+              {error.name}
+            </span>
+          )}
         </div>
         <div className="space-y-1 text-sm mt-4">
           <label htmlFor="select" className="block dark:text-gray-50 text-lg">
@@ -72,6 +96,7 @@ function App() {
             handleChange={handleChange}
             selected={selected}
             setSelected={setSelected}
+            error={error}
           />
         </div>
         <div className="flex items-center mt-3">
@@ -80,19 +105,22 @@ function App() {
             name="remember"
             id="remember"
             aria-label="Remember me"
+            checked={terms}
             onChange={(e) => {
               setTerms(e.target.checked);
             }}
             className="mr-1 rounded-sm focus:ring-violet-400 focus:dark:border-violet-400 focus:ring-2 accent-violet-400"
           />
-          <label
-            htmlFor="remember"
-            className="text-md dark:text-gray-50"
-            defaultValue={terms}
-          >
+          <label htmlFor="remember" className="text-md dark:text-gray-50">
             Agree to terms
           </label>
         </div>
+        {error?.terms && (
+          <span className="text-red-700 text-lg font-semibold">
+            {error.terms}
+          </span>
+        )}
+        <br />
         <button
           type="button"
           onClick={onSubmit}
