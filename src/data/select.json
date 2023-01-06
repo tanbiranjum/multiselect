@@ -1,0 +1,38 @@
+[
+    {
+        "label": "Manufacturing",
+        "value": 0,
+        "options": [
+            {
+                "label": "Construction Materials",
+                "value": 1
+            },
+            {
+                "label": "Electronics and Optics",
+                "value": 2
+            },
+            {
+                "label": "Food & Beverage",
+                "value": 3,
+                "options": [
+                    {
+                        "label": "Bakery",
+                        "value": 4
+                    },
+                    {
+                        "label": "Dairy",
+                        "value": 5
+                    },
+                    {
+                        "label": "Meat",
+                        "value": 6
+                    },
+                    {
+                        "label": "Seafood",
+                        "value": 7
+                    }
+                ]
+            }
+        ]
+    }
+]
