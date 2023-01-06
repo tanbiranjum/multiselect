@@ -63,7 +63,7 @@ function App() {
   };
 
   return (
-    <div className="App p-24 bg-slate-500 min-h-screen">
+    <div className="App p-10 md:p-24 bg-slate-500 min-h-screen">
       <h1 className="text-2xl text-gray-50 mb-3">
         Please enter your name and pick the Sectors you are currently involved
         in.
@@ -83,7 +83,7 @@ function App() {
             onChange={(e) => {
               setName(e.target.value);
             }}
-            className="w-1/5 px-4 py-3 rounded-md border-gray-700 bg-gray-900 text-gray-100 focus:dark:border-violet-400"
+            className="w-full md:w-72 px-4 py-3 rounded-md border-gray-700 bg-gray-900 text-gray-100 focus:dark:border-violet-400"
           />
           <br />
           {error?.name && (
