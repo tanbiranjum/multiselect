@@ -10,8 +10,12 @@ function App() {
 
   const handleChange = (e) => {
     const options = e.target.options;
+
     for (let i = 0, l = options.length; i < l; i++) {
       if (options[i].selected) {
+        if (selected.some((item) => item.index === options[i].index)) {
+          return;
+        }
         options[i].style.backgroundColor = "#D0C1FC";
         if (selected.length > 0) {
           setSelected([
