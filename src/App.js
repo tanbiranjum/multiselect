@@ -1,7 +1,10 @@
 import MultiSelect from "./components/MultiSelect";
 import React, { useState } from "react";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 function App() {
+  const MySwal = withReactContent(Swal);
   const data = JSON.parse(localStorage.getItem("savedata")) || {};
 
   const [name, setName] = useState(data.name || "");
@@ -55,6 +58,8 @@ function App() {
       terms,
     };
     localStorage.setItem("savedata", JSON.stringify(data));
+
+    MySwal.fire("Good job!", "You filled the form!", "success");
   };
 
   return (
