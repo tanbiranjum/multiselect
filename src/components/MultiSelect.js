@@ -31,6 +31,7 @@ const MultiSelect = ({ handleChange, selected, setSelected, error }) => {
         ref={ref}
         className="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/5 p-2.5 bg-gray-900 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
       >
+        {/* map through the data and display the options */}
         {Data.map((item, index) => (
           <>
             <option key={index} value={item.value} className="text-lg">

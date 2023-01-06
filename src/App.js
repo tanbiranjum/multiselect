@@ -36,7 +36,6 @@ function App() {
 
   // save data to local storage
   const onSubmit = () => {
-    console.log(terms);
     if (name === "") {
       setError({ name: "Please fill the name*" });
       return;

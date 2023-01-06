@@ -32,6 +32,24 @@
                         "value": 7
                     }
                 ]
+            },
+            {
+                "label": "Furniture",
+                "value": 8,
+                "options": [
+                    {
+                        "label": "Bedroom",
+                        "value": 9
+                    },
+                    {
+                        "label": "Dining Room",
+                        "value": 10
+                    },
+                    {
+                        "label": "Living Room",
+                        "value": 11
+                    }
+                ]
             }
         ]
     }
